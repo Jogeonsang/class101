@@ -20,13 +20,23 @@ class Home extends Component {
     this.props.getProductItem();
   }
   render() {
-    console.log(this.props.ProductItem);
+    const { ProductItem } = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
         <div className={cx(`${moduleName}-title`)}>
           여러 가지 다양한 클래스를 경험해보세요!
         </div>
-        {this.props.ProductItem.isLoading ? <Loading /> : <Item />}
+        <div className={cx(`${moduleName}-itemBox`)}>
+          {!ProductItem.isLoading &&
+            ProductItem.productItems.map(List => (
+              <Item
+                coverImg={List.coverImage}
+                title={List.title}
+                price={List.price}
+                score={List.score}
+              />
+            ))}
+        </div>
       </div>
     );
   }

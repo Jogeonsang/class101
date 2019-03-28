@@ -1,0 +1,39 @@
+.Item {
+  width: 210px;
+  margin: 10px 5px;
+  &-Box {
+    width: 210px;
+  }
+  &-CoverImg {
+    width: 210px;
+    height: 125px;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  &-title {
+    color: #495057;
+    height: 40px;
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  &-price {
+    color: #868e96;
+    margin: 3px 0;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  &-Button {
+    width: 100%;
+    background: rgb(253, 126, 20);
+    border-radius: 3px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
