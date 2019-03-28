@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classnames from "classnames/bind";
 
 import Loading from "src/components/Loading";
+import Item from "src/components/Item";
 
 import style from "./styles.scss";
 import { connect } from "react-redux";
@@ -25,7 +26,7 @@ class Home extends Component {
         <div className={cx(`${moduleName}-title`)}>
           여러 가지 다양한 클래스를 경험해보세요!
         </div>
-        {this.props.ProductItem.isLoading ? <Loading /> : null}
+        {this.props.ProductItem.isLoading ? <Loading /> : <Item />}
       </div>
     );
   }
