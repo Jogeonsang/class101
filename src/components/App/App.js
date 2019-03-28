@@ -1,10 +1,15 @@
-import React, { Component } from "react";
-import "./App.scss";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import "./styles.scss";
+import Home from "src/components/Home";
+import Navigation from "src/components/Navigation";
 
-class App extends Component {
-  render() {
-    return <div className="App">Hello Class101</div>;
-  }
-}
+// Component를 Key값으로 먼저 보여줄 순서를 설정한다. 1 = Navigation 2 = Main Component 3 = Footer
+const App = props => [<Navigation key={1} />, <PrviateRoutes key={2} />];
 
+const PrviateRoutes = props => (
+  <Switch>
+    <Route exact path="/" component={Home} />
+  </Switch>
+);
 export default App;
