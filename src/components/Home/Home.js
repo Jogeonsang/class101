@@ -30,6 +30,7 @@ class Home extends Component {
           {!ProductItem.isLoading &&
             ProductItem.productItems.map(List => (
               <Item
+                id={List.id}
                 coverImg={List.coverImage}
                 title={List.title}
                 price={List.price}

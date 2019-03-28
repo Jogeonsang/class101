@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import classnames from "classnames/bind";
+import { connect } from "react-redux";
 
+import { addCart, removeCart } from "src/redux/Cart/action";
 import styles from "./styles.scss";
 
 const moduleName = "Item";
@@ -18,19 +20,21 @@ class Item extends Component {
     return num.toString().replace(regexp, ",");
   };
 
-  handleCartChange = () => {
+  handleCartChange = itemId => {
     if (this.state.inCart === false) {
       this.setState({
         inCart: true
       });
+      this.props.addOneToCart(itemId);
     } else {
       this.setState({
         inCart: false
       });
+      this.props.removeOneFromCart();
     }
   };
   render() {
-    const { coverImg, title, price, score } = this.props;
+    const { coverImg, title, price, score, id } = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
         <div className={cx(`${moduleName}-Box`)}>
@@ -42,7 +46,7 @@ class Item extends Component {
         </div>
         <div
           className={cx(`${moduleName}-Button`)}
-          onClick={this.handleCartChange}
+          onClick={() => this.handleCartChange(id)}
         >
           {this.state.inCart ? "장바구니에서 빼기" : "장바구니에 담기"}
         </div>
@@ -51,4 +55,16 @@ class Item extends Component {
   }
 }
 
-export default Item;
+export default connect(
+  ({ cart }, { id, price }) => ({
+    id,
+    cart,
+    price
+  }),
+  (dispatch, { id, price }) => ({
+    addOneToCart: () => {
+      dispatch(addCart({ id, price }));
+    },
+    removeOneFromCart: () => dispatch(removeCart({ id }))
+  })
+)(Item);
