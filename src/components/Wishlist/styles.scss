@@ -1,0 +1,27 @@
+.WishList {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10px;
+  &-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(62, 64, 66);
+    line-height: 28px;
+    letter-spacing: -0.3px;
+  }
+  &-paymentInfo {
+    position: absolute;
+    right: 1px;
+    margin-right: 150px;
+    &-label {
+      display: inherit;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    &-totalPrice {
+      font-weight: 600;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+  }
+}

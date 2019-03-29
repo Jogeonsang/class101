@@ -3,6 +3,7 @@ import classnames from "classnames/bind";
 import { connect } from "react-redux";
 
 import { addCart, removeCart } from "src/redux/Cart/action";
+import { addComma } from "src/utils/price";
 import styles from "./styles.scss";
 
 const moduleName = "Item";
@@ -15,11 +16,6 @@ class Item extends Component {
       inCart: false
     };
   }
-  addComma = num => {
-    let regexp = /\B(?=(\d{3})+(?!\d))/g;
-    return num.toString().replace(regexp, ",");
-  };
-
   handleCartChange = itemId => {
     if (this.state.inCart === false) {
       this.setState({
@@ -34,13 +30,13 @@ class Item extends Component {
     }
   };
   render() {
-    const { coverImg, title, price, score, id } = this.props;
+    const { coverImg, title, price, score, id, availableCoupon } = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
         <div className={cx(`${moduleName}-Box`)}>
           <img className={cx(`${moduleName}-CoverImg`)} src={coverImg} alt="" />
           <div className={cx(`${moduleName}-title`)}>{title}</div>
-          <div className={cx(`${moduleName}-price`)}>{`${this.addComma(
+          <div className={cx(`${moduleName}-price`)}>{`${addComma(
             price
           )}원`}</div>
         </div>
@@ -56,14 +52,19 @@ class Item extends Component {
 }
 
 export default connect(
-  ({ cart }, { id, price }) => ({
+  ({ cart }, { id, price, coverImg, title, availableCoupon }) => ({
     id,
     cart,
-    price
+    price,
+    coverImg,
+    title,
+    availableCoupon
   }),
-  (dispatch, { id, price }) => ({
+  (dispatch, { id, price, coverImg, title, availableCoupon }) => ({
     addOneToCart: () => {
-      dispatch(addCart({ id, price }));
+      dispatch(
+        addCart({ id, price, coverImg, title, availableCoupon, amount: 1 })
+      );
     },
     removeOneFromCart: () => dispatch(removeCart({ id }))
   })

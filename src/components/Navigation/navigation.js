@@ -20,12 +20,12 @@ class Navigation extends Component {
     const cartAmount = Object.values(this.props.Cart).length;
     return (
       <div className={cx(`${moduleName}`)}>
-        <span>
+        <Link to="/">
           <img className={cx(`${moduleName}-logo`)} src={logo} alt="logo" />
-        </span>
+        </Link>
         <span className={cx(`${moduleName}-rightIcon`)}>
           {cartAmount > 0 ? (
-            <Link className={cx(`${moduleName}-cart`)} to="cart">
+            <Link className={cx(`${moduleName}-cart`)} to="/wishlist">
               <CartIcon className={cx(`${moduleName}-cartIcon`)} />
               <span className={cx(`${moduleName}-cart-amount`)}>
                 {cartAmount || ""}

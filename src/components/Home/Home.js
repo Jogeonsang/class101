@@ -35,6 +35,7 @@ class Home extends Component {
                 title={List.title}
                 price={List.price}
                 score={List.score}
+                availableCoupon={List.availableCoupon}
               />
             ))}
         </div>
